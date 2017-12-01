@@ -13,7 +13,7 @@ if (Meteor.isServer) {
 
 // http://docs.meteor.com/api/collections.html#Mongo-Collection-upsert
 Meteor.methods({
-  'tea.upsert'(type, id, start, finish) {
+  'tea.upsert'(type, id, start, duration) {
     check(type, String);
  
     let currentTea = Tea.upsert({
@@ -23,21 +23,20 @@ Meteor.methods({
       $set: {
         type: type,
         start: start,
-        finish: finish,
+        duration: duration,
         updatedAt: new Date(),
       }
     });
     return currentTea.insertedId;
   },
-  'tea.update.duration'(id, duration) {
-    //check(duration, Number);
+  'tea.update.temp'(id, value) {
 
     Tea.update({
       _id: id
     },
     {
       $set: {
-        steepingtime: duration,
+        temp: value,
         updatedAt: new Date(),
       }
     });
@@ -49,20 +48,30 @@ Meteor.methods({
     },
     {
       $set: {
-        water: value,
+        waterReady: value,
         updatedAt: new Date(),
       }
     });
   },
-  'tea.update.timer'(id, duration, start, finish) {
+  'tea.update.brew'(id, value) {
 
     Tea.update({
       _id: id
     },
     {
       $set: {
-        timer: duration,
-        start: start,
+        brewingNow: value,
+        updatedAt: new Date(),
+      }
+    });
+  },
+  'tea.update.finish'(id, finish) {
+
+    Tea.update({
+      _id: id
+    },
+    {
+      $set: {
         finish: finish,
         updatedAt: new Date(),
       }

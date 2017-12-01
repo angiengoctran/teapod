@@ -33,17 +33,30 @@ function onData(data) {
   topic = "greentea";
   message = "on";
   }
-  if (data.trim() === "GreenTea: water is Ready") {
+  if (data.trim().indexOf("Temperature is: ") > -1) {
+    var temparray = data.trim().split(":");
+    console.log(temparray);
+    Meteor.call('tea.update.temp', currentTea, new Date());
+    console.log(waterTemp);
+  topic = "temp";
+  message = "current_temp";
+  }
+  if (data.trim() === "Water is Ready") {
     Meteor.call('tea.update.water', currentTea, new Date());
     console.log(waterReady);
-  topic = "greentea_water";
+  topic = "tea_water";
   message = "water_ready";
   }
-  if (data.trim() === "GreenTea: timer starts Counting Down") {
-    Meteor.call('tea.update.timer', currentTea, new Date());
-    console.log(timerCountingdown);
-  topic = "greentea_timer";
-  message = "timer_countingdown";
+  if (data.trim() === "Timer is on") {
+    Meteor.call('tea.update.brew', currentTea, new Date());
+    console.log(brewingNow);
+  topic = "timer";
+  message = "on";
+  if (data.trim() === "Tea is Done") {
+    Meteor.call('tea.update.finish', currentTea, new Date());
+    console.log(finish);
+  topic = "greentea";
+  message = "done";
 
   if (topic != null) {
     client.publish(topic, message);
