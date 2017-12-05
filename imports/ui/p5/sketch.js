@@ -6,7 +6,7 @@ export default function sketch (p5) {
   let brewing = false;
   var interval;
   var timer;
-  var duration = 180000;
+  //var duration = 180000;
 
   // set variables for a grid of 100 possible values
   // let gridIndex = 0;
@@ -89,3 +89,4 @@ export default function sketch (p5) {
       // g = p5.random(255);
       // b = p5.random(255);
   };
+}
