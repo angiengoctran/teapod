@@ -46,20 +46,19 @@ export default function sketch (p5) {
   // this special function receives data from App.jsx withTracker
 
 
-  fuctnion timerOn()
+  function timerOn()
   {
     console.log ("Timer is on");
     timerOn = createP(duration);
   };
 
-  fuctnion countDown()
+  function countDown()
   {
     console.log ("Counting Down");
     timer.html(duration);
     duration--;
   };
 
-  function 
 
   p5.myCustomRedrawAccordingToNewPropsHandler = function (props) 
   {
