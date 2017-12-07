@@ -7,6 +7,7 @@ export default function sketch (p5) {
   var interval;
   var timer;
   let teatype = false;
+  let watertemp = false;
   //var duration = 180000;
 
   // set variables for a grid of 100 possible values
@@ -69,7 +70,16 @@ export default function sketch (p5) {
         if (props.tea.type)
         {
           teatype = true;
+          console.log(props.tea.type);
           p5.text(tea.type,p5.width/3, p5.height/3);
+          /*if (!watertemp)
+          {
+            if (props.tea.temp)
+            {
+            watertemp = true;
+            p5.text("Current Temperature",props.tea.temp,p5.width/3, p5.height-200);
+            }
+          } */      
         }
       }
       if (!brewing)
