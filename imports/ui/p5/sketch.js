@@ -22,7 +22,7 @@ export default function sketch (p5) {
   p5.setup = function () {
     // standard p5 setup code, note p5. because we passed it in above
     p5.createCanvas(375, 667);
-    p5.background(192);
+    p5.background(255,50,76);
     p5.textSize(30);
     timer = p5.createP('timer');
 
@@ -71,15 +71,18 @@ export default function sketch (p5) {
         {
           teatype = true;
           console.log(props.tea.type);
-          p5.text(tea.type,p5.width/3, p5.height/3);
+          p5.fill(255).strokeWeight(0).textSize(50);
+          p5.textFont("Proxima Nova");
+          //p5.CENTER;
+          p5.text(tea.type, 30, 50);
           /*if (!watertemp)
           {
             if (props.tea.temp)
             {
             watertemp = true;
-            p5.text("Current Temperature",props.tea.temp,p5.width/3, p5.height-200);
+            p5.text("Current Temperature: ",props.tea.temp,p5.width/3, p5.height-20);
             }
-          } */      
+          }*/       
         }
       }
       if (!brewing)

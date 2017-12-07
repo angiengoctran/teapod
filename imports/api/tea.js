@@ -7,7 +7,7 @@ import { check } from 'meteor/check';
 if (Meteor.isServer) {
   // This code only runs on the server
   Meteor.publish('tea', function teaPublication() {
-    return Tea.find({finish:null});
+    return Tea.find({finish:{"$exists":false}});
   });
 }
 

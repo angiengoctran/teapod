@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import SerialPort from 'serialport';
 import tea from '../imports/api/tea.js'
 let currentTea = null;
-let greentea_duration = 180000;
+//let greentea_duration = 180000;
 import { connect } from 'mqtt/lib/connect';
 
 export const config = {
@@ -28,7 +28,7 @@ function onData(data) {
   var topic = null;
   var message = null;
   if (data.trim() === "Green Tea Button is on") {
-    currentTea = Meteor.call('tea.upsert', "Green Tea", currentTea, new Date(), null);
+    currentTea = Meteor.call('tea.upsert', "Green Tea", currentTea, new Date(), greentea_duration = 10);
     console.log(currentTea);
   topic = "greentea";
   message = "on";
@@ -62,6 +62,7 @@ function onData(data) {
   if (data.trim() === "Tea is Done") {
     Meteor.call('tea.update.finish', currentTea, new Date());
     console.log("finish");
+    currentTea = null;
   topic = "greentea";
   message = "done";
   }
