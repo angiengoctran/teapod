@@ -8,7 +8,6 @@ export default function sketch (p5) {
   var timer;
   let teatype = false;
   let watertemp = false;
-  //var duration = 180000;
 
   // set variables for a grid of 100 possible values
   // let gridIndex = 0;
@@ -71,6 +70,18 @@ export default function sketch (p5) {
         {
           teatype = true;
           console.log(props.tea.type);
+          if (props.tea.type == "Green Tea")
+          {
+            p5.background (57,181,74);
+          }
+          if (props.tea.type == "Black Tea")
+          {
+            p5.background (0);
+          }
+           if (props.tea.type == "Oolong Tea")
+          {
+            p5.background (247,152,28);
+          }
           p5.fill(255).strokeWeight(0).textSize(50);
           p5.textFont("Proxima Nova");
           //p5.CENTER;

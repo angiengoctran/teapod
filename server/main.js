@@ -34,9 +34,15 @@ function onData(data) {
   message = "on";
   }
   if (data.trim() === "Black Tea Button is on") {
-    currentTea = Meteor.call('tea.upsert', "Black Tea", currentTea, new Date(), null);
+    currentTea = Meteor.call('tea.upsert', "Black Tea", currentTea, new Date(), blacktea_duration = 10);
     console.log(currentTea);
   topic = "blacktea";
+  message = "on";
+  }
+  if (data.trim() === "Oolong Tea Button is on") {
+    currentTea = Meteor.call('tea.upsert', "Oolong Tea", currentTea, new Date(), oolongtea_duration = 10);
+    console.log(currentTea);
+  topic = "oolongtea";
   message = "on";
   }
   if (data.trim().indexOf("Temperature is: ") > -1) {
