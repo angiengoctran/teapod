@@ -48,7 +48,7 @@ function onData(data) {
   if (data.trim().indexOf("Temperature is: ") > -1) {
     var temparray = data.trim().split(":");
     console.log(temparray);
-    Meteor.call('tea.update.temp', currentTea, new Date());
+    Meteor.call('tea.update.temp', currentTea, parseFloat(temparray[1]));
     console.log("waterTemp");
   topic = "temp";
   message = "current_temp";

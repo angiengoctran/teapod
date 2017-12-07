@@ -5,9 +5,11 @@ export default function sketch (p5) {
   let duration = 0;
   let brewing = false;
   var interval;
-  var timer;
+  //var timer;
   let teatype = false;
   let watertemp = false;
+  let teafinish = false;
+  //var timer;
 
   // set variables for a grid of 100 possible values
   // let gridIndex = 0;
@@ -23,8 +25,6 @@ export default function sketch (p5) {
     p5.createCanvas(375, 667);
     p5.background(255,50,76);
     p5.textSize(30);
-    timer = p5.createP('timer');
-
   };
 
   p5.draw = function () 
@@ -51,8 +51,11 @@ export default function sketch (p5) {
   function countDown()
   {
     console.log ("Counting Down");
-    timer.html(duration);
+    //p5.text(timerOn(duration), 20, 300);
+    timerOn.html(duration);
+    showTimer = timerOn.html();
     duration--;
+    //p5.text(showTimer, 20, 300);
   };
 
 
@@ -86,14 +89,15 @@ export default function sketch (p5) {
           p5.textFont("Proxima Nova");
           //p5.CENTER;
           p5.text(tea.type, 30, 50);
-          /*if (!watertemp)
+          if (!watertemp)
           {
             if (props.tea.temp)
             {
             watertemp = true;
-            p5.text("Current Temperature: ",props.tea.temp,p5.width/3, p5.height-20);
+            console.log(props.tea.temp);
+            p5.text("Current Temperature: ",props.tea.temp, 30, 100);
             }
-          }*/       
+          }       
         }
       }
       if (!brewing)
@@ -102,7 +106,15 @@ export default function sketch (p5) {
         {
           brewing = true;
           setTimeout(timerOn, props.tea.duration);
-          setInterval(countDown, 1000); //(visual count down) https://www.youtube.com/watch?v=CqDqHiamRHA
+          interval = setInterval(countDown, 1000); //(visual count down) https://www.youtube.com/watch?v=CqDqHiamRHA
+          if (!teafinish) 
+          {
+            if (props.tea.finish)
+            {
+              teafinish = true;
+              clearInterval(interval);
+            }
+          }
         }
       }
     }
