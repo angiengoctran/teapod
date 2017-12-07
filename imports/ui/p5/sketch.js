@@ -9,6 +9,7 @@ export default function sketch (p5) {
   let teatype = false;
   //let watertemp = false;
   let teafinish = false;
+  let teawater = false;
   //var timer;
 
   // set variables for a grid of 100 possible values
@@ -24,7 +25,8 @@ export default function sketch (p5) {
     // standard p5 setup code, note p5. because we passed it in above
     p5.createCanvas(375, 667);
     p5.background(255,50,76);
-    p5.textSize(30);
+    //p5.textSize(30);
+    p5.textFont("Proxima Nova");
   };
 
   p5.draw = function () 
@@ -76,17 +78,17 @@ export default function sketch (p5) {
           if (props.tea.type == "Green Tea")
           {
             p5.background (57,181,74);
+            p5.text("Target Temp: 65*-80*C", 30, 80);
           }
           if (props.tea.type == "Black Tea")
           {
             p5.background (0);
           }
-           if (props.tea.type == "Oolong Tea")
+          if (props.tea.type == "Oolong Tea")
           {
             p5.background (247,152,28);
           }
           p5.fill(255).strokeWeight(0).textSize(50);
-          p5.textFont("Proxima Nova");
           //p5.CENTER;
           p5.text(tea.type, 30, 50);
           //if (!watertemp)
@@ -97,7 +99,14 @@ export default function sketch (p5) {
             console.log(props.tea.temp);
             p5.text("Current Temperature: ",props.tea.temp, 30, 100);
             }
-          //}       
+          //}  
+          if (!teawater) 
+          {
+            if (props.tea.water)
+            {
+              p5.text("Hold the Timer button for 2 seconds to start steeping", 30, 80);
+            }
+          }
         }
       }
       if (!brewing)
@@ -112,6 +121,7 @@ export default function sketch (p5) {
             if (props.tea.finish)
             {
               teafinish = true;
+              p5.text("IT'S TEA TIME!", 30, 80);
               clearInterval(interval);
             }
           }
