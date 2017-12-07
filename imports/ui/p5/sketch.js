@@ -7,7 +7,7 @@ export default function sketch (p5) {
   var interval;
   //var timer;
   let teatype = false;
-  let watertemp = false;
+  //let watertemp = false;
   let teafinish = false;
   //var timer;
 
@@ -89,15 +89,15 @@ export default function sketch (p5) {
           p5.textFont("Proxima Nova");
           //p5.CENTER;
           p5.text(tea.type, 30, 50);
-          if (!watertemp)
-          {
+          //if (!watertemp)
+          //{
             if (props.tea.temp)
             {
-            watertemp = true;
+            //watertemp = true;
             console.log(props.tea.temp);
             p5.text("Current Temperature: ",props.tea.temp, 30, 100);
             }
-          }       
+          //}       
         }
       }
       if (!brewing)
