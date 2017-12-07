@@ -6,6 +6,7 @@ export default function sketch (p5) {
   let brewing = false;
   var interval;
   var timer;
+  let teatype = false;
   //var duration = 180000;
 
   // set variables for a grid of 100 possible values
@@ -19,21 +20,16 @@ export default function sketch (p5) {
 
   p5.setup = function () {
     // standard p5 setup code, note p5. because we passed it in above
-    p5.createCanvas(600, 600);
-    p5.background(255);
+    p5.createCanvas(375, 667);
+    p5.background(192);
     p5.textSize(30);
-    timer = createP('timer');
+    timer = p5.createP('timer');
 
-    // make a grid of x,y positions based on our canvas size
-  //   for (var a = 0; a < p5.width; a += 60) {
-  //     for (var b = 0; b < p5.height; b += 40) {
-  //       gridPos.push({x:a,y:b});
-  //     }
-  //   }
   };
 
   p5.draw = function () 
   {
+     
     // fill the background of each square with white before drawing ascii chars
     // p5.fill(255);
     // p5.noStroke()
@@ -49,7 +45,7 @@ export default function sketch (p5) {
   function timerOn()
   {
     console.log ("Timer is on");
-    timerOn = createP(duration);
+    timerOn = p5.createP(duration);
   };
 
   function countDown()
@@ -62,17 +58,26 @@ export default function sketch (p5) {
 
   p5.myCustomRedrawAccordingToNewPropsHandler = function (props) 
   {
+    console.log("receive props",props);
     if (props.tea)
     {
       // get the new tea object
       tea = props.tea;
       duration = props.tea.duration;
+      if (!teatype)
+      {
+        if (props.tea.type)
+        {
+          teatype = true;
+          p5.text(tea.type,p5.width/3, p5.height/3);
+        }
+      }
       if (!brewing)
       {
-        if (props.tea.bewingNow)
+        if (props.tea.brewingNow)
         {
           brewing = true;
-          setTimeOut(timerOn, props.tea.duration);
+          setTimeout(timerOn, props.tea.duration);
           setInterval(countDown, 1000); //(visual count down) https://www.youtube.com/watch?v=CqDqHiamRHA
         }
       }

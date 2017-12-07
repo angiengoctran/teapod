@@ -28,34 +28,40 @@ function onData(data) {
   var topic = null;
   var message = null;
   if (data.trim() === "Green Tea Button is on") {
-    currentTea = Meteor.call('tea.upsert', "green", currentTea, new Date(), null);
+    currentTea = Meteor.call('tea.upsert', "Green Tea", currentTea, new Date(), null);
     console.log(currentTea);
   topic = "greentea";
+  message = "on";
+  }
+  if (data.trim() === "Black Tea Button is on") {
+    currentTea = Meteor.call('tea.upsert', "Black Tea", currentTea, new Date(), null);
+    console.log(currentTea);
+  topic = "blacktea";
   message = "on";
   }
   if (data.trim().indexOf("Temperature is: ") > -1) {
     var temparray = data.trim().split(":");
     console.log(temparray);
     Meteor.call('tea.update.temp', currentTea, new Date());
-    console.log(waterTemp);
+    console.log("waterTemp");
   topic = "temp";
   message = "current_temp";
   }
   if (data.trim() === "Water is Ready") {
     Meteor.call('tea.update.water', currentTea, new Date());
-    console.log(waterReady);
+    console.log("waterReady");
   topic = "tea_water";
   message = "water_ready";
   }
   if (data.trim() === "Timer is on") {
     Meteor.call('tea.update.brew', currentTea, new Date());
-    console.log(brewingNow);
+    console.log("brewingNow");
   topic = "timer";
   message = "on";
   }
   if (data.trim() === "Tea is Done") {
     Meteor.call('tea.update.finish', currentTea, new Date());
-    console.log(finish);
+    console.log("finish");
   topic = "greentea";
   message = "done";
   }

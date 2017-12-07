@@ -10,7 +10,7 @@
     "mqtt": "^2.14.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
-    "react-p5-wrapper": "0.0.4",
+    "react-p5-wrapper": "https://github.com/kandizzy/react-p5-wrapper/tarball/master",
     "serialport": "^6.0.4"
   }
 }
